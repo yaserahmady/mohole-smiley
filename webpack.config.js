@@ -15,7 +15,10 @@ module.exports = {
       server: { baseDir: ["dist"] },
     }),
     new CopyPlugin({
-      patterns: [{ context: "./src/", from: "**/*.html", to: "./[name][ext]" }],
+      patterns: [
+        { context: "./src/", from: "**/*.html", to: "./[name][ext]" },
+        { context: "./src/", from: "**/*.mp3", to: "./[name][ext]" },
+      ],
     }),
   ],
 };

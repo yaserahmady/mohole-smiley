@@ -25,13 +25,19 @@
     "autoprefixer": "^10.4.2",
     "copy-webpack-plugin": "^10.2.4",
     "postcss": "^8.4.6",
+    "tailwind-css-variables": "^3.0.1",
     "tailwindcss": "^3.0.19"
   },
   "dependencies": {
+    "alpinejs": "^3.8.1",
+    "animate.css": "^4.1.1",
+    "animejs": "^3.2.1",
     "browser-sync-webpack-plugin": "^2.3.0",
+    "howler": "^2.2.3",
     "postcss-cli": "^9.1.0",
     "postcss-import": "^14.0.2",
     "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "zdog": "^1.1.3"
   }
 }
