@@ -1,15 +1,11 @@
 import Zdog from "zdog";
-import { tailwindColors } from "./tailwind-colors";
 import { Howl, Howler } from "howler";
-
-const COLORS = {
-  bg: tailwindColors.amber[300],
-  fg: tailwindColors.black,
-};
+import { COLORS } from "./config";
 
 const element = document.querySelector(".zdog-canvas");
 const sound = new Howl({
   src: ["bounce.mp3"],
+  volume: 0.2,
 });
 
 let smiley = new Zdog.Illustration({
@@ -17,27 +13,27 @@ let smiley = new Zdog.Illustration({
   zoom: 3,
 });
 
-// let contorno = new Zdog.Ellipse({
-//   addTo: smiley,
-//   width: 120,
-//   height: 120,
-//   stroke: 6,
-//   color: COLORS.fg,
-//   quarters: 1,
-//   fill: false,
-// });
+let contorno = new Zdog.Ellipse({
+  addTo: smiley,
+  width: 120,
+  height: 120,
+  stroke: 6,
+  color: COLORS.fg,
+  quarters: 1,
+  fill: false,
+});
 
-// contorno.copy({
-//   rotate: { z: Zdog.TAU / 2 },
-// });
+contorno.copy({
+  rotate: { z: Zdog.TAU / 2 },
+});
 
-// contorno.copy({
-//   rotate: { z: Zdog.TAU / 4 },
-// });
+contorno.copy({
+  rotate: { z: Zdog.TAU / 4 },
+});
 
-// contorno.copy({
-//   rotate: { z: -Zdog.TAU / 4 },
-// });
+contorno.copy({
+  rotate: { z: -Zdog.TAU / 4 },
+});
 
 let occhi = new Zdog.Group({
   addTo: smiley,

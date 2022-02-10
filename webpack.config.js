@@ -3,10 +3,13 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: "./src/app.js",
+  entry: {
+    app: "./src/app.js",
+    three: "./src/three.js",
+  },
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "app.js",
+    filename: "[name].js",
   },
   plugins: [
     new BrowserSyncPlugin({
@@ -18,6 +21,7 @@ module.exports = {
       patterns: [
         { context: "./src/", from: "**/*.html", to: "./[name][ext]" },
         { context: "./src/", from: "**/*.mp3", to: "./[name][ext]" },
+        { context: "./src/", from: "**/*.json", to: "./[name][ext]" },
       ],
     }),
   ],
