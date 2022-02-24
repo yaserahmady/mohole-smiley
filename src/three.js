@@ -7,6 +7,8 @@ const sound = new Howl({
   src: ["bounce.mp3"],
   volume: 0.2,
 });
+
+const loader = new THREE.ObjectLoader();
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   50, // Field of view
@@ -14,20 +16,19 @@ const camera = new THREE.PerspectiveCamera(
   0.1, // Near clip plane
   1000 // Far clip plane
 );
-camera.position.z = 8; // positive numbers means backwards in this case
+camera.position.z = 7; // positive numbers means backwards in this case
+
+const canvasWidth = clamp(window.innerWidth, 320, 640);
 const renderer = new THREE.WebGLRenderer({
-  alpha: true,
+  alpha: true, // alpha true makes background body tag color show up
   antialias: true,
   canvas: document.querySelector("canvas"),
-}); //alpha true makes background body tag color show up
-const loader = new THREE.ObjectLoader();
-
+});
 renderer.setPixelRatio(window.devicePixelRatio);
-const canvasWidth = clamp(window.innerWidth, 320, 640);
 renderer.setSize(canvasWidth, canvasWidth);
-renderer.autoClear = false;
+// renderer.autoClear = false;
 
-var smileyGroup = new THREE.Group();
+let smileyGroup = new THREE.Group();
 
 const faceFeaturesMaterial = new THREE.MeshBasicMaterial({
   color: COLORS.fg,
@@ -47,18 +48,18 @@ loader.load(
     console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
   },
   function (err) {
-    console.error("Error loading 'ship.obj'");
+    console.error("Error loading 'model.json'");
   }
 );
 
-var faceSphereGeometry = new THREE.SphereGeometry(1.5, 50, 50);
-var faceSphereMaterial = new THREE.MeshBasicMaterial({ color: COLORS.bg });
-var faceSphereMesh = new THREE.Mesh(faceSphereGeometry, faceSphereMaterial);
+let faceSphereGeometry = new THREE.SphereGeometry(1.5, 50, 50);
+let faceSphereMaterial = new THREE.MeshBasicMaterial({ color: COLORS.bg });
+let faceSphereMesh = new THREE.Mesh(faceSphereGeometry, faceSphereMaterial);
 smileyGroup.add(faceSphereMesh);
 
 scene.add(smileyGroup);
 
-var outlineEffect = new OutlineEffect(renderer, {
+let outlineEffect = new OutlineEffect(renderer, {
   defaultThickness: 0.0,
   defaultColor: [0.0784313725, 0.0, 1],
   defaultAlpha: 0.8,
@@ -72,7 +73,7 @@ faceSphereMaterial.userData.outlineParameters = {
 };
 
 window.addEventListener("mousemove", function (e) {
-  var mouse3D = new THREE.Vector3(
+  let mouse3D = new THREE.Vector3(
     (e.clientX / window.innerWidth) * 2 - 1,
     -(e.clientY / window.innerHeight) * 2 + 1,
     0.5
@@ -82,6 +83,7 @@ window.addEventListener("mousemove", function (e) {
 });
 
 function clamp(val, min, max) {
+  // Questa funzione costringe un valore `val` entro un limite massimo `max` e un limite minimo `min`.
   return val < min ? min : val > max ? max : val;
 }
 
