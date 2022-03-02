@@ -4,7 +4,7 @@ import { COLORS } from "./config";
 import { Howl, Howler } from "howler";
 
 const sound = new Howl({
-  src: ["bounce.mp3"],
+  src: ["/assets/bounce.mp3"],
   volume: 0.2,
 });
 
@@ -35,7 +35,7 @@ const faceFeaturesMaterial = new THREE.MeshBasicMaterial({
 });
 
 loader.load(
-  "model.json",
+  "/assets/model.json",
   function (obj) {
     obj.traverse(function (child) {
       if (child instanceof THREE.Mesh) {
@@ -72,11 +72,11 @@ faceSphereMaterial.userData.outlineParameters = {
   keepAlive: true,
 };
 
-window.addEventListener("mousemove", function (e) {
+window.addEventListener("mousemove", function (event) {
   let mouse3D = new THREE.Vector3(
-    (e.clientX / window.innerWidth) * 2 - 1,
-    -(e.clientY / window.innerHeight) * 2 + 1,
-    0.5
+    (event.clientX / window.innerWidth) * 2 - 1,
+    -(event.clientY / window.innerHeight) * 2 + 1,
+    2
   );
 
   smileyGroup.lookAt(mouse3D);

@@ -4,12 +4,12 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: "./src/app.js",
-    three: "./src/three.js",
+    "demo-zdog": "./src/js/demo-zdog.js",
+    "demo-three": "./src/js/demo-three.js",
   },
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "[name].js",
+    path: path.resolve(__dirname, "./dist/"),
+    filename: "./js/[name].js",
   },
   plugins: [
     new BrowserSyncPlugin({
@@ -20,8 +20,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { context: "./src/", from: "**/*.html", to: "./[name][ext]" },
-        { context: "./src/", from: "**/*.mp3", to: "./[name][ext]" },
-        { context: "./src/", from: "**/*.json", to: "./[name][ext]" },
+        { context: "./src/", from: "**/*.mp3", to: "./assets/[name][ext]" },
+        { context: "./src/", from: "**/*.json", to: "./assets/[name][ext]" },
       ],
     }),
   ],

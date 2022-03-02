@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf dist/*",
     "watch-js": "webpack --mode development --watch",
     "watch-css": "TAILWIND_MODE=watch postcss ./src/style.postcss --verbose --output ./dist/style.css --watch",
     "watch": "concurrently \"npm:watch-*\"",
     "build-js": "webpack --mode production",
     "build-css": "postcss ./src/style.postcss --verbose --output ./dist/style.css --minify",
-    "build": "concurrently \"npm:build-*\""
+    "build": "npm run clean && concurrently \"npm:build-*\""
   },
   "repository": {
     "type": "git",

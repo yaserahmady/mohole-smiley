@@ -4,7 +4,7 @@ import { COLORS } from "./config";
 
 const element = document.querySelector(".zdog-canvas");
 const sound = new Howl({
-  src: ["bounce.mp3"],
+  src: ["assets/bounce.mp3"],
   volume: 0.2,
 });
 
